@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styles from '../styles/Form.module.css'
 
 const Form = function(props) {
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState(1);
 
   const doRaffle = async () => {
     const res = await fetch('/api/winners/' + amount);
@@ -10,15 +10,20 @@ const Form = function(props) {
   }
 
   return (
-  <div href="" className={styles.raffle}>
-    Choose the amount of winners
-    <input
+  <form href="" className={styles.raffle}>
+    <p>
+      <input
         type="number"
         value={amount}
+        className={styles.input}
         onChange={e => { setAmount(e.currentTarget.value); }}
-    />
-    <a onClick={doRaffle}>Do your magic!</a>
-  </div>
+      />
+      Winner(s)
+    </p>
+    <p>
+      <a className={styles.button} onClick={doRaffle}>Raffle time!</a>
+    </p>
+  </form>
   )
 }
 

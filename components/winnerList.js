@@ -8,7 +8,7 @@ const WinnerList = function(props) {
     <div id="winners" className={styles.winners}>
       {winners.length > 0 ? (
         winners.map((w, index) => {
-          return <Winner name={w.name} email={w.email} key={index} />
+          return <Winner name={w.name} email={w.email} fallback={w.fallback} key={index} />
         })
       ) : (
         <div>
