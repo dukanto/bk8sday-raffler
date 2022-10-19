@@ -11,10 +11,42 @@
   text-align: center;
 }
 
+.success {
+	flex-direction: column;
+	text-align: center;
+}
+.registered {
+	display: block;
+	font-size: 20px;
+}
+
+.label {
+	display: block;
+	text-align: left;
+}
+
 .input {
+  width: 300px;
+	padding: 10px;
+	border-radius: 4px;
+	border: 1px solid #00b894;
+}
+
+.smallInput {
   width: 30px;
-  border: 1px solid #999;
   margin-right: 1em;
+}
+
+.error {
+	width: 300px;
+	border: 1px solid rgba(231, 76, 60,1.0);
+	background-color: rgba(231, 76, 60, 0.1);
+	padding: 10px;
+	border-radius: 4px;
+}
+
+.error .small {
+	font-size: 80%;
 }
 
 .button {

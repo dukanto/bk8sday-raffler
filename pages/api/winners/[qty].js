@@ -1,39 +1,27 @@
 
-import getPeople from '../../../lib/netlifyService';
+import { getParticipants } from '../../../lib/planetScaleService';
 import getRandoms from '../../../lib/randomService';
 
-let peopleWhoWon = [];
-const getParticipants = async function() {
-  const people = await getPeople();
-  const participants = toParticipants(people);
-  return unique(participants);
-};
-
-const toParticipants = function(people) {
-  return people.map((person) => {
-    return {name: person.name, email: person.email}
-  });
-}
-
-const unique = function(people) {
-  return people.filter((person, index, self) =>
-    index === self.findIndex((p) => (
-      p.email === person.email
-    ))
-  )
-};
-
 export default async function winners(req, res) {
-  const qty = (req.query.qty ? parseInt(req.query.qty, 10) : 1) * 2; // we double them, so we have fallbacks
 
-  const participants = await getParticipants();
-  const randoms = await getRandoms(qty, participants.length);
-  console.log(randoms)
-  peopleWhoWon = randoms.map((r,i) => {
-    return {
-      ...participants[r - 1],
-      fallback: i >= (qty/2)
+  if (req.method === 'GET') {
+    try {
+      const qty = (req.query.qty ? parseInt(req.query.qty, 10) : 1) * 2; // we double them, so we have fallbacks
+      const participants = await getParticipants();
+      const randoms = await getRandoms(qty, participants.length);
+      const peopleWhoWon = randoms.map((r,i) => {
+        return {
+          ...participants[r - 1],
+          fallback: i >= (qty/2)
+        }
+      }); 
+      return res.status(200).json({ peopleWhoWon });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ msg: 'Something went wrong' });
     }
-  }); 
-  res.status(200).json(peopleWhoWon);
+  } else {
+    return res.status(405).json({ msg: 'Method not allowed' });
+  }
+
 }

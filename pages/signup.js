@@ -2,8 +2,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Form from '../components/form'
-import WinnerList from '../components/winnerList'
+import SignUpForm from '../components/signup-form'
 
 export default function Home() {
 
@@ -16,30 +15,28 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>bk8s2021 raffler</title>
+        <title>bk8s2022 raffler</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="">the raffle!</a>
+          Sign up to <a href="">the raffle!</a>
         </h1>
 
         <p className={styles.description}>
-          We will raffle some CNCF certifications <br/>
-          between those who had joined the list at<br/>
-          <code className={styles.code}>https://day2021.bk8s.tech/raffle</code>
+          Enter your details below<br/>
+          to enter the raffle for some CNCF certifications
         </p>
 
         <div className={styles.grid}>
-          <Form parentCallback={handleResults} />
-          <WinnerList winners={winners}/>
+          <SignUpForm parentCallback={handleResults} />
         </div>
       </main>
 
       <footer className={styles.footer}>
         <a
-          href="https://day2021.bk8s.tech/"
+          href="https://day2022.bk8s.tech/"
           target="_blank"
           rel="noopener noreferrer"
         >
