@@ -8,6 +8,7 @@ export default async function winners(req, res) {
     try {
       const qty = (req.query.qty ? parseInt(req.query.qty, 10) : 1) * 2; // we double them, so we have fallbacks
       const participants = await getParticipants();
+      console.log(`Will draw ${qty} from ${participants.length} participants`);
       const randoms = await getRandoms(qty, participants.length);
       const peopleWhoWon = randoms.map((r,i) => {
         return {
