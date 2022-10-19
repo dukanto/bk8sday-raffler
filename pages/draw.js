@@ -28,7 +28,7 @@ export default function Home() {
         <p className={styles.description}>
           We will raffle some CNCF certifications <br/>
           between those who had joined the list at<br/>
-          <code className={styles.code}>https://day2022.bk8s.tech/raffle</code>
+          <code className={styles.code}>https://raffle2022.bk8s.tech/signup</code>
         </p>
 
         <div className={styles.grid}>
