@@ -6,7 +6,7 @@ export default async function winners(req, res) {
 
   if (req.method === 'GET') {
     try {
-      const qty = (req.query.qty ? parseInt(req.query.qty, 10) : 1) * 2; // we double them, so we have fallbacks
+      const qty = 2; // we double them, so we have fallbacks
       const participants = await getParticipants();
       console.log(`Will draw ${qty} from ${participants.length} participants`);
       const randoms = await getRandoms(qty, participants.length);
